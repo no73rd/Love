@@ -155,7 +155,7 @@
   const questions = [
     {
       q: "أول مكالمه فون اتكلمناها سوا كانت تاريخها اي؟؟",
-      answers: ["18/4"],
+      answers: ["31/3"],
       successMsg: 'شاطره يا نونو',
       iconClass: 'heart',
       icon: '❤️'
@@ -182,119 +182,4 @@
       icon: '❤️'
     },
     {
-      q: "السؤال دا اكتر اسم بتحبي تناديني بيه؟",
-      answers: [], // أي إجابة
-      successMsg: 'بحبك يا نونو',
-      iconClass: 'heart',
-      icon: '❤️',
-      isNameInput: true
-    }
-  ];
-
-  let currentQ = 0;
-  const questionEl = document.getElementById('question');
-  const answerEl = document.getElementById('answer');
-  const btn = document.getElementById('checkBtn');
-  const message = document.getElementById('message');
-  const msgText = document.getElementById('msgText');
-  const msgIcon = document.getElementById('msgIcon');
-  const finalQuestion = document.getElementById('finalQuestion');
-
-  function showMessage(text, icon, iconClass) {
-    msgText.textContent = text;
-    msgIcon.textContent = icon;
-    msgIcon.className = iconClass;
-    message.classList.add('show');
-    // تختفي الرسالة بعد 3 ثواني
-    setTimeout(() => {
-      message.classList.remove('show');
-    }, 3000);
-  }
-
-  function nextQuestion() {
-    currentQ++;
-    if (currentQ < questions.length) {
-      questionEl.textContent = questions[currentQ].q;
-      answerEl.value = '';
-      answerEl.focus();
-
-      if (questions[currentQ].q === "باقي كام يوم ونكمل سنه سوا؟") {
-        finalQuestion.classList.add('hidden');
-      }
-
-      // إظهار/إخفاء السؤال "بتحبني؟؟"
-      if (questions[currentQ].q === "بتحبني؟؟") {
-        finalQuestion.classList.remove('hidden');
-      }
-    } else {
-      // انتهت كل الأسئلة - نعرض الصفحة النهائية
-      showFinalPage();
-    }
-  }
-
-  function showFinalPage() {
-    document.body.innerHTML = '';
-    const lastAnswer = questions[questions.length -1].lastAnswer || '';
-    const div = document.createElement('div');
-    div.style.height = '100vh';
-    div.style.display = 'flex';
-    div.style.flexDirection = 'column';
-    div.style.justifyContent = 'center';
-    div.style.alignItems = 'center';
-    div.style.background = 'linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%)';
-    div.style.color = '#2ecc71';
-    div.style.fontFamily = "'Cairo', sans-serif";
-    div.style.fontWeight = '900';
-    div.style.fontSize = '2.5rem';
-    div.style.textAlign = 'center';
-    div.style.padding = '20px';
-    div.innerHTML = `<p>${lastAnswer} بيحبك جدا جدا جدا جدا وفوق الوصف</p>`;
-    document.body.appendChild(div);
-  }
-
-  btn.addEventListener('click', () => {
-    const userAnswer = answerEl.value.trim();
-    if (!userAnswer) {
-      alert('من فضلك اكتب إجابتك');
-      return;
-    }
-
-    const currentQuestion = questions[currentQ];
-
-    // تحقق من الإجابة
-    if (currentQuestion.isNameInput) {
-      // آخر سؤال، أي إجابة مقبولة
-      currentQuestion.lastAnswer = userAnswer;
-      showMessage(currentQuestion.successMsg, currentQuestion.icon, currentQuestion.iconClass);
-      setTimeout(() => {
-        // رسالة "بحبك يا نونو" تختفي بعد 3 ثواني، ثم ننقل للصفحة النهائية
-        showFinalPage();
-      }, 3000);
-
-    } else {
-      // تحقق من تطابق الاجابة (حساسة لحالة الأحرف)
-      const valid = currentQuestion.answers.some(ans => ans.toLowerCase() === userAnswer.toLowerCase());
-      if (valid) {
-        showMessage(currentQuestion.successMsg, currentQuestion.icon, currentQuestion.iconClass);
-
-        // بعد 3 ثواني ننتقل للسؤال التالي
-        setTimeout(() => {
-          nextQuestion();
-        }, 3000);
-
-      } else {
-        alert('حاول تاني! الإجابة مش صح.');
-        answerEl.value = '';
-        answerEl.focus();
-      }
-    }
-  });
-
-  // ابدأ بالسؤال الأول
-  questionEl.textContent = questions[0].q;
-  answerEl.focus();
-
-</script>
-
-</body>
-</html>
+      q: "السؤال دا اكتر اسم بتحبي تناديني بيه
